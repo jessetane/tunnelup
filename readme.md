@@ -3,11 +3,9 @@ helper script for tunneling into "the other" internet on OS X via Hurricane Elec
 
 ## how
 set up a tunnel here first: [tunnelbroker.net](http://tunnelbroker.net)  
-then,
+then:
 ```bash
-git clone https://github.com/jessetane/tunnelup.git
-cd tunnelup
-./tunnelup
+curl -s https://raw.github.com/jessetane/tunnelup/master/tunnelup | bash
 ```
 
 ## notes

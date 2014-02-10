@@ -20,4 +20,4 @@ echo "you can delete your tunnel by typing: sudo ifconfig $NAME destroy"
 
 echo ""
 echo "now attempting to ping the ipv6 internet, ^C to stop"
-ping6 ipv6.google.com
+ping6 www.kame.net

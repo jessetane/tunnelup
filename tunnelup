@@ -1,0 +1,23 @@
+#!/bin/bash
+
+NAME="gif1"
+INTERNAL_IP="$(ifconfig en0 | grep 'inet ' | tr -s " " | cut -d " " -f 2)"
+
+echo -n "please enter your IPV4_ENDPOINT: "
+read -a IPV4_ENDPOINT
+
+echo -n "please enter your IPV6_ENDPOINT: "
+read -a IPV6_ENDPOINT
+
+sudo ifconfig "$NAME" create
+sudo ifconfig "$NAME" tunnel "$INTERNAL_IP" "$IPV4_ENDPOINT"
+sudo ifconfig "$NAME" inet6 "${IPV6_ENDPOINT%%${IPV6_ENDPOINT: -1}}2" "$IPV6_ENDPOINT" prefixlen 128
+sudo route -n add -inet6 default "$IPV6_ENDPOINT"
+
+echo ""
+echo "your tunnel has been created as: $NAME"
+echo "you can delete your tunnel by typing: sudo ifconfig $NAME destroy"
+
+echo ""
+echo "now attempting to ping the ipv6 internet, ^C to quit"
+ping6 ipv6.google.com

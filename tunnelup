@@ -4,10 +4,10 @@ NAME="gif1"
 INTERNAL_IP="$(ifconfig en0 | grep "inet " | tr -s " " | cut -d " " -f 2)"
 
 echo -n "please enter your SERVER_IPv4_ADDRESS: "
-read -a SERVER_IPv4_ADDRESS
+read -a SERVER_IPv4_ADDRESS < /dev/tty
 
 echo -n "please enter your SERVER_IPv6_ADDRESS: "
-read -a SERVER_IPv6_ADDRESS
+read -a SERVER_IPv6_ADDRESS < /dev/tty
 
 sudo ifconfig "$NAME" create
 sudo ifconfig "$NAME" tunnel "$INTERNAL_IP" "$SERVER_IPv4_ADDRESS"

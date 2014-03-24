@@ -9,6 +9,7 @@ read -a SERVER_IPv4_ADDRESS < /dev/tty
 echo -n "please enter your SERVER_IPv6_ADDRESS: "
 read -a SERVER_IPv6_ADDRESS < /dev/tty
 
+sudo ifconfig "$NAME" destroy
 sudo ifconfig "$NAME" create
 sudo ifconfig "$NAME" tunnel "$INTERNAL_IP" "$SERVER_IPv4_ADDRESS"
 sudo ifconfig "$NAME" inet6 "${SERVER_IPv6_ADDRESS%%${SERVER_IPv6_ADDRESS: -1}}2" "$SERVER_IPv6_ADDRESS" prefixlen 128
@@ -20,4 +21,4 @@ echo "you can delete your tunnel by typing: sudo ifconfig $NAME destroy"
 
 echo ""
 echo "now attempting to ping the ipv6 internet, ^C to stop"
-ping6 www.kame.net
+ping6 ipv6.google.com
